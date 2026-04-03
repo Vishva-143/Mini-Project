@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h3 class="text-center mb-4">Dashboard</h3>
+
+<!-- 🔥 TOP CARDS -->
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card p-4">
+            <h6>Total Students</h6>
+            <h2>{{ total }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4">
+            <h6>Average %</h6>
+            <h2>{{ avg }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4">
+            <h6>Topper</h6>
+            <h5>{{ topper[0] if topper else "N/A" }}</h5>
+        </div>
+    </div>
+
+</div>
+
+<!-- 🔥 STUDENT PERFORMANCE CHART -->
+<div class="card p-4 mt-4">
+    <h5>📊 Performance Chart</h5>
+    <div style="height:350px;">
+        <canvas id="chart"></canvas>
+    </div>
+</div>
+
+<!-- 🔥 CLASS-WISE SUMMARY -->
+<div class="card p-4 mt-4">
+
+<h4 class="text-center mb-3">🎓 Class-wise Summary</h4>
+
+<table class="table table-dark text-center">
+<tr>
+<th>Class</th>
+<th>Total Students</th>
+<th>Average %</th>
+</tr>
+
+{% for i in range(class_names|length) %}
+<tr>
+<td>{{ class_names[i] }}</td>
+<td>{{ class_counts[i] }}</td>
+<td>{{ class_avg[i] }}%</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+<!-- 🔥 CLASS-WISE CHART -->
+<div class="card p-4 mt-4">
+
+<h5>📊 Class-wise Performance</h5>
+
+<div style="height:300px;">
+    <canvas id="classChart"></canvas>
+</div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<!-- ✅ SINGLE CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+// @ts-nocheck
+
+var names = JSON.parse('{{ names | tojson | safe }}');
+var marks = JSON.parse('{{ marks | tojson | safe }}');
+var classNames = JSON.parse('{{ class_names | tojson | safe }}');
+var classAvg = JSON.parse('{{ class_avg | tojson | safe }}');
+
+var ctx = document.getElementById('chart');
+
+if (ctx && names.length > 0) {
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: names,
+            datasets: [{
+                label: 'Percentage',
+                data: marks,
+                backgroundColor: ['#22c55e','#3b82f6','#f59e0b','#ef4444','#8b5cf6']
+            }]
+        }
+    });
+}
+
+var ctx2 = document.getElementById('classChart');
+
+if (ctx2 && classNames.length > 0) {
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: classNames,
+            datasets: [{
+                label: 'Average %',
+                data: classAvg,
+                backgroundColor: '#38bdf8'
+            }]
+        }
+    });
+}
+</script>
+
+{% endblock %}

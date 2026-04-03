@@ -1,0 +1,166 @@
+/* GLOBAL */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #f1f5f9;
+    overflow-x: hidden;
+}
+
+/* CONTAINER */
+.container-fluid {
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #020617 !important;
+    border-bottom: 1px solid #334155;
+}
+
+.navbar .btn {
+    border-radius: 8px;
+}
+
+/* HEADINGS */
+h3 {
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+/* CARDS */
+.card {
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* CARD TEXT */
+.card h6 {
+    color: #94a3b8;
+}
+
+.card h2 {
+    color: #22c55e;
+    font-weight: bold;
+}
+
+.card h5 {
+    color: #38bdf8;
+}
+
+/* TABLE */
+.table {
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: #e2e8f0;
+    color: #000;
+}
+
+.table tbody tr {
+    background: rgba(255,255,255,0.05);
+    transition: 0.2s;
+}
+
+.table tbody tr:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* BADGE */
+.badge {
+    font-size: 14px;
+}
+
+/* BUTTONS */
+.btn {
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+#chart {
+    width: 100% !important;
+    height: 350px !important;
+}
+
+/* FORM */
+.form-control {
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 2px #38bdf8;
+}
+
+/* PROGRESS BAR */
+.progress {
+    height: 20px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+}
+
+.progress-bar {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ALERT */
+.alert {
+    border-radius: 10px;
+}
+
+/* ANIMATION */
+.fade-in {
+    animation: fade 0.5s ease-in;
+}
+
+@keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* RESPONSIVE DESIGN */
+
+/* TABLE SCROLL ON SMALL SCREEN */
+@media (max-width: 768px) {
+    .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .card {
+        margin-bottom: 15px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+    .navbar .btn {
+        margin-top: 5px;
+        display: block;
+        width: 100%;
+    }
+}

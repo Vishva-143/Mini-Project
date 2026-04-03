@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>View Students</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="container mt-4">
+
+<h2 class="mb-3">Students List</h2>
+
+<form method="GET" class="mb-3">
+<div class="input-group">
+<input class="form-control" name="search" placeholder="Search by Name">
+<button class="btn btn-primary">Search</button>
+</div>
+</form>
+
+<table class="table table-bordered table-striped">
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Roll No</th>
+<th>English</th>
+<th>Math</th>
+<th>Physics</th>
+<th>Chemistry</th>
+<th>Computer</th>
+<th>Total</th>
+<th>Percentage</th>
+<th>Action</th>
+</tr>
+
+{% for s in students %}
+<tr>
+<td>{{ s[0] }}</td>
+<td>{{ s[1] }}</td>
+<td>{{ s[2] }}</td>
+<td>{{ s[3] }}</td>
+<td>{{ s[4] }}</td>
+<td>{{ s[5] }}</td>
+<td>{{ s[6] }}</td>
+<td>{{ s[7] }}</td>
+<td>{{ s[8] }}</td>
+<td>{{ s[9] }}</td>
+<td>
+<a href="/update/{{ s[0] }}" class="btn btn-warning btn-sm">Edit</a>
+<a href="/delete/{{ s[0] }}" class="btn btn-danger btn-sm">Delete</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<a href="/dashboard" class="btn btn-secondary">Back</a>
+
+</body>
+</html>

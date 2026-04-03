@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+
+<div class="card p-4">
+
+<h3 class="mb-3">➕ Add Student</h3>
+
+<!-- 🔥 ERROR MESSAGE -->
+{% if error %}
+<div class="alert alert-danger text-center">
+    {{ error }}
+</div>
+{% endif %}
+
+<form method="POST">
+
+<input name="name" class="form-control mb-3" placeholder="Name" required>
+
+<input name="rollno" class="form-control mb-3" placeholder="Roll No" required>
+
+<select name="class_id" class="form-control mb-3" required>
+    <option value="">Select Class</option>
+    {% for c in classes %}
+        <option value="{{ c[0] }}">{{ c[1] }}</option>
+    {% endfor %}
+</select>
+
+<input name="english" type="number" class="form-control mb-2" placeholder="English" required>
+<input name="mathematics" type="number" class="form-control mb-2" placeholder="Mathematics" required>
+<input name="physics" type="number" class="form-control mb-2" placeholder="Physics" required>
+<input name="chemistry" type="number" class="form-control mb-2" placeholder="Chemistry" required>
+<input name="computer_science" type="number" class="form-control mb-3" placeholder="Computer Science" required>
+
+<button class="btn btn-success w-100">Add Student</button>
+
+</form>
+
+</div>
+
+{% endblock %}

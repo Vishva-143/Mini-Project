@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Update Student</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="container mt-4">
+
+<h2 class="mb-4">Update Student</h2>
+
+<!-- ✅ ALERT MESSAGE -->
+{% if error %}
+<div class="alert alert-danger text-center">
+    {{ error }}
+</div>
+{% endif %}
+
+<form method="POST" class="card p-4 shadow">
+
+<input type="text" name="name" value="{{ student[1] }}" class="form-control mb-3" required>
+
+<input type="text" name="rollno" value="{{ student[2] }}" class="form-control mb-3" required>
+
+<!-- ✅ CLASS SELECT FIX -->
+<select name="class_id" class="form-control mb-3" required>
+    {% for c in classes %}
+        <option value="{{ c[0] }}" {% if c[0] == student[3] %}selected{% endif %}>
+            {{ c[1] }}
+        </option>
+    {% endfor %}
+</select>
+
+<input type="number" name="english" value="{{ student[4] }}" class="form-control mb-3" required>
+<input type="number" name="mathematics" value="{{ student[5] }}" class="form-control mb-3" required>
+<input type="number" name="physics" value="{{ student[6] }}" class="form-control mb-3" required>
+<input type="number" name="chemistry" value="{{ student[7] }}" class="form-control mb-3" required>
+<input type="number" name="computer_science" value="{{ student[8] }}" class="form-control mb-3" required>
+
+<button class="btn btn-primary w-100">Update</button>
+
+<a href="/students" class="btn btn-secondary mt-2 w-100">Back</a>
+
+</form>
+
+<!-- ✅ SAFE ALERT (NO VS CODE ERROR) -->
+{% if error %}
+<script>
+    window.onload = function() {
+        alert("{{ error }}");
+    }
+</script>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Students{% endblock %}
+
+{% block content %}
+
+<div class="card p-4">
+
+<h4 class="mb-4 text-center">📋 Students List</h4>
+
+<!-- 🔍 SEARCH -->
+<input type="text" id="search" class="form-control mb-4" placeholder="Search by Name or Roll No...">
+
+{% for class, students in grouped.items() %}
+
+<div class="mb-4 class-block">
+
+<h5 class="text-info">🎓Students ({{ students|length }})</h5>
+
+<table class="table table-dark table-hover text-center align-middle mt-2">
+
+<thead class="table-secondary text-dark">
+<tr>
+<th>Name</th>
+<th>Roll No</th>
+<th>Percentage</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for s in students %}
+<tr class="student-row">
+
+<td class="name">{{ s[1] }}</td>
+<td class="roll">{{ s[2] }}</td>
+
+<td>
+<span class="badge bg-success p-2">
+{{ s[9] }}%
+</span>
+</td>
+
+<td>
+
+<a href="/student/{{ s[0] }}" class="btn btn-primary btn-sm">View</a>
+
+<a href="/update/{{ s[0] }}" class="btn btn-warning btn-sm">Edit</a>
+
+<a href="/delete/{{ s[0] }}" 
+   class="btn btn-danger btn-sm"
+   onclick="return confirm('Are you sure?')">
+Delete
+</a>
+
+<a href="/report/{{ s[0] }}" class="btn btn-info btn-sm">PDF</a>
+
+</td>
+
+</tr>
+{% endfor %}
+
+</tbody>
+</table>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- 🔥 SEARCH SCRIPT -->
+<script>
+document.getElementById("search").addEventListener("keyup", function() {
+    let value = this.value.toLowerCase();
+
+    document.querySelectorAll(".class-block").forEach(block => {
+        let rows = block.querySelectorAll(".student-row");
+        let visible = 0;
+
+        rows.forEach(row => {
+            let name = row.querySelector(".name").innerText.toLowerCase();
+            let roll = row.querySelector(".roll").innerText.toLowerCase();
+
+            if (name.includes(value) || roll.includes(value)) {
+                row.style.display = "";
+                visible++;
+            } else {
+                row.style.display = "none";
+            }
+        });
+
+        block.style.display = visible ? "" : "none";
+    });
+});
+</script>
+
+{% endblock %}

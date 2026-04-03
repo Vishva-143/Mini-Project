@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+    
+    <span class="navbar-brand">🎓 Students Academic System</span>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        ☰
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse justify-content-end" id="menu">
+        <a href="/dashboard" class="btn btn-outline-light btn-sm mx-1">Dashboard</a>
+        <a href="/add_student" class="btn btn-outline-light btn-sm mx-1">Add</a>
+        <a href="/students" class="btn btn-outline-light btn-sm mx-1">Students</a>
+        <a href="/analytics" class="btn btn-outline-light btn-sm mx-1">Analytics</a>
+        <a href="/assistant" class="btn btn-outline-light btn-sm mx-1">AI</a>
+        <a href="/logout" class="btn btn-danger btn-sm mx-1">Logout</a>
+    </div>
+
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="container-fluid p-4">
+
+    <!-- Page Title -->
+    <h3 class="text-center mb-4">{{ self.title() }}</h3>
+
+    <!-- Page Content -->
+    <div class="fade-in">
+        {% block content %}{% endblock %}
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Page Scripts (IMPORTANT FOR CHART) -->
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

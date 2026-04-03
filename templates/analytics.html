@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">📊 Analytics</h2>
+
+<div class="card p-4">
+
+<table class="table text-center">
+
+<tr>
+<th>Name</th>
+<th>Current</th>
+<th>Predicted</th>
+<th>Weak</th>
+</tr>
+
+{% for r in results %}
+<tr>
+<td>{{ r.name }}</td>
+
+<td>
+<div class="progress">
+<div class="progress-bar bg-success" style="width: {{ r.current }}%">
+{{ r.current }}%
+</div>
+</div>
+</td>
+
+<td>
+<div class="progress">
+<div class="progress-bar bg-info" style="width: {{ r.predicted }}%">
+{{ r.predicted }}%
+</div>
+</div>
+</td>
+
+<td class="text-danger fw-bold">{{ r.weak }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}
